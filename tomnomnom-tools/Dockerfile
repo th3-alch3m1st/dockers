@@ -13,5 +13,8 @@ RUN go get -u github.com/tomnomnom/anew
 FROM alpine
 
 COPY --from=build /go/bin/* /usr/local/bin/
+RUN apk update \
+ && apk add jq \
+ && rm -rf /var/cache/apk/*
 
 CMD "/bin/ash"
